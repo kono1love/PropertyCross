@@ -1,51 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Domain;
 
 namespace PropertyCrossConsole
 {
-  public  class Program
+    static class Program
     {
-        static HttpClient Client = new HttpClient();
-       
+        static HttpClient httpClient = new HttpClient();
+        static readonly string url = @"http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=leeds";
+
         static void Main(string[] args)
         {
-            var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36");
-            RunAsync().Wait();
-            var test = GetAsync(string.Empty).Result;
-            Console.WriteLine($"Price - {test.Price}");
-            Console.WriteLine($"Description - {test.Description}");
-            Console.WriteLine($"Location - {test.FlatLocation}");
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+
+            var response = httpClient.GetAsync(new Uri(url)).Result;
+
+            response.EnsureSuccessStatusCode();
+            var content = response.Content.ReadAsStringAsync().Result;
+
+            var flat = ParseResponse(ParseResponse(content)["response"].ToString());
+
+            //var res = JsonConvert.DeserializeObject<Dictionary<string, object>>(values["response"].ToString());
+            //content = System.Web.Helpers.Json.Decode(content).ToString();
+            //var flat = RunAsync().Result;
+            //ShowData(flat);
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
 
-        static async Task<Flat> GetAsync(string path)
+        static Dictionary<string, object> ParseResponse(string response)
         {
-
-            Flat flat = null;
-            HttpResponseMessage response = await Client.GetAsync(@"http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=leeds");
-                if (response.IsSuccessStatusCode)
-            {
-                flat = await response.Content.ReadAsAsync<Flat>();
-            }
-            return flat;
+            return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
         }
-        static async Task RunAsync()
+
+        private static void ShowData(Flat flat)
         {
-            Client.BaseAddress = new Uri("http://api.nestoria.co.uk/api");
-            Client.DefaultRequestHeaders.Accept.Clear();
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             
         }
-        
+
+         static async Task<Flat> GetAsync(string url)
+        {
+            var flat = new Flat();
+
+            return flat;
+        }
+        static async Task<Flat> RunAsync()
+        {
+            return await GetAsync(url);
+        }
     }
 }
