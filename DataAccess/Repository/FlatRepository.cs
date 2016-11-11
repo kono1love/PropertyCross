@@ -7,7 +7,7 @@ using Domain;
 
 namespace DataAccess.Repository
 {
-    public class Repository
+    public class FlatRepository
     {
         private static Dictionary<int, Flat> data = new Dictionary<int, Flat>();
 

@@ -8,19 +8,15 @@ using Domain;
 
 namespace DataAccess
 {
-    public class FlatContext : DbContext
+    public class FlatDbContext : DbContext
     {
-        public FlatContext()
+        public FlatDbContext()
         : base("name=FlatDB")
-
     {}
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<Flat>().ToTable("FlatDB");
         }
         public DbSet<Flat> Flats { get; set; }
     }
-   
-
-  
 }

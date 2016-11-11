@@ -65,8 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlatContext.cs" />
-    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="FlatDbContext.cs" />
+    <Compile Include="Repository\FlatRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
