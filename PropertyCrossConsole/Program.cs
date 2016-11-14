@@ -72,28 +72,37 @@ public class SearchListings
     static class Program
     {
         static readonly HttpClient httpClient = new HttpClient();
-        static readonly string url = @"http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=leeds";
-
+        static readonly string baseUrl = @"http://api.nestoria.co.uk/api?";
+//create class search_listing 
         static void Main()
         {
-            var result = RunAsync().Result;
-            var flats = result.Response.Listings.Select(x => new Flat
+            try
             {
-                Price = x.Price.ToString(),
-                FlatLocation = x.Title.ToString(),
-                BedNum = x.BedNum.ToString(),
-                BathNum = x.BathNum.ToString(),
-                Summary = x.Summary.ToString()
+                var listingAction = new ListingAction(new ListingFilters(ListingTypes.Buy, "London"));
 
-            });
+                var result = RunAsync(listingAction).Result;
 
-            //ShowFlat(new Flat());
+                var flats = result.Response.Listings.Select(x => new Flat
+                {
+                    Price = x.Price.ToString(),
+                    FlatLocation = x.Title.ToString(),
+                    BedNum = x.BedNum.ToString(),
+                    BathNum = x.BathNum.ToString(),
+                    Summary = x.Summary.ToString()
+                });
 
-            using (var context = new FlatDbContext())
+                //ShowFlat(new Flat());
+
+                using (var context = new FlatDbContext())
+                {
+                    context.Flats.AddRange(flats);
+
+                    context.SaveChanges(); //context
+                }
+            }
+            catch(ArgumentException e)
             {
-                context.Flats.AddRange(flats);
-                
-                context.SaveChanges(); //context
+                Console.WriteLine($"Something is going wrong: {e.Message}");
             }
 
             Console.WriteLine("Press any key to exit...");
@@ -101,21 +110,20 @@ public class SearchListings
         }
 
        
-        static async Task<SearchListings> GetFlatAsync()
+        static async Task<SearchListings> GetFlatAsync(ListingAction action)
         {
-            var response = await httpClient.GetAsync(new Uri(url));
-
+            var response = await httpClient.GetAsync(new Uri($"{baseUrl}{action.ListingUrl}"));
 
             return await response.Content.ReadAsAsync < SearchListings>();
         }
 
 
-        static async Task<SearchListings> RunAsync()
+        static async Task<SearchListings> RunAsync(ListingAction action)
         {
             httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd(
                 "Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
 
-            return await GetFlatAsync();
+            return await GetFlatAsync(action);
         }
 
 
