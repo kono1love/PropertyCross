@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Web.Http;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Http.Controllers;
-using Newtonsoft.Json.Serialization;
 using Domain;
 using DataAccess;
-
-using System.Configuration;
+using NestoriaClient;
 
 namespace PropertyCrossConsole
 {
@@ -44,8 +38,7 @@ namespace PropertyCrossConsole
         //public string thumb_url { get; set; }
         //public int thumb_width { get; set; }
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string Title { get; set; }
-        
+        public string Title { get; set; } 
     }
 
     public class Location
@@ -53,7 +46,6 @@ namespace PropertyCrossConsole
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
     }
-
     public class Response
     {
         [JsonProperty("listings", NullValueHandling = NullValueHandling.Ignore)]
@@ -73,11 +65,11 @@ public class SearchListings
     {
         static readonly HttpClient httpClient = new HttpClient();
         static readonly string baseUrl = @"http://api.nestoria.co.uk/api?";
-//create class search_listing 
         static void Main()
         {
             try
             {
+
                 var listingAction = new ListingAction(new ListingFilters(ListingTypes.Buy, "London"));
 
                 var result = RunAsync(listingAction).Result;
@@ -90,9 +82,6 @@ public class SearchListings
                     BathNum = x.BathNum.ToString(),
                     Summary = x.Summary.ToString()
                 });
-
-                //ShowFlat(new Flat());
-
                 using (var context = new FlatDbContext())
                 {
                     context.Flats.AddRange(flats);
@@ -109,7 +98,6 @@ public class SearchListings
             Console.ReadKey();
         }
 
-       
         static async Task<SearchListings> GetFlatAsync(ListingAction action)
         {
             var response = await httpClient.GetAsync(new Uri($"{baseUrl}{action.ListingUrl}"));

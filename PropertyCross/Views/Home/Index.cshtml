@@ -1,4 +1,6 @@
-﻿@using PropertyCross.Models
+﻿@model  NestoriaClient.ListingFilters
+@using System.Web.Mvc.Html
+
 @{
     Layout = null;
 }
@@ -21,24 +23,31 @@
             
         </div>
         <div class="navbar-collapse collapse">
-            
             <form class="navbar-form pull-right">
                 <button type="button" class="btn">Favourites</button>
             </form>
         </div>
     </div>
 </div>
+   
 <div class="container body-content">
     <div class="span4" align="center">
-        <p>Use bla bla bla
-            bla bla bla
-            bla bla bla</p>
-        <p><input type="text" name="search" size="100" maxlength="150" value="Enter location"/></p>
-        <p><button class="btn">Go</button> <button class="btn">My location</button></p>
-        <p><label>Recent searches:</label></p>
-        <p><textarea ></textarea></p>
+        @using (Html.BeginForm("ListingFilters", "NestoriaClient", FormMethod.Post))
+        {
+            <p>Use bla bla bla
+                bla bla bla
+                bla bla bla</p>
+            <p> @Html.TextBoxFor(p => p.PlaceName)
+            </p>
+            <p><button name="Searchbtn" class="btn" type="submit">Go</button> <button class="btn">My location</button>
+            </p>
+            <p><label>Recent searches:</label>
+            </p>
+            <p><textarea ></textarea>
+            </p>
+    }
     </div>
     <div></div>
 </div>
 </body>
-</html>
+</html> 

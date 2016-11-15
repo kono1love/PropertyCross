@@ -115,6 +115,10 @@
       <Project>{b92b17a8-c9ad-45d0-a478-577d78145c93}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NestoriaClient\NestoriaClient.csproj">
+      <Project>{07413d03-e7c2-4e39-832b-55efef687b8e}</Project>
+      <Name>NestoriaClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.intellisense.js" />
