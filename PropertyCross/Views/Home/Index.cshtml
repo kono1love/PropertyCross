@@ -1,4 +1,4 @@
-﻿@model  NestoriaClient.ListingFilters
+﻿@model  PropertyCross.Models.ListingFiltersViewModel
 @using System.Web.Mvc.Html
 
 @{
@@ -34,17 +34,19 @@
     <div class="span4" align="center">
         @using (Html.BeginForm("ListingFilters", "NestoriaClient", FormMethod.Post))
         {
+            @Html.HiddenFor(p => p.Type)
             <p>Use bla bla bla
                 bla bla bla
                 bla bla bla</p>
-            <p> @Html.TextBoxFor(p => p.PlaceName)
+            <p> @Html.TextBoxFor(x => x.PlaceName)
             </p>
-            <p><button name="Searchbtn" class="btn" type="submit">Go</button> <button class="btn">My location</button>
+            <p><input class="btn" value="Go" type="submit">
+        <button class="btn">My location</button>
             </p>
             <p><label>Recent searches:</label>
             </p>
-            <p><textarea ></textarea>
-            </p>
+            @Html.TextAreaFor(x => x.PlaceName, new { @class = "form-control"})
+            
     }
     </div>
     <div></div>

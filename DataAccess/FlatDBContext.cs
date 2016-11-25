@@ -12,7 +12,7 @@ namespace DataAccess
     {
         public FlatDbContext()
         : base("name=FlatDB")
-    {}
+        {}
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Flat>().ToTable("FlatDB");

@@ -1,26 +1,36 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using DataAccess;
+using Domain;
 using NestoriaClient;
+using PropertyCross.Models;
 
 namespace PropertyCross.Controllers
 {
     public class NestoriaClientController : Controller
     {
-        public ActionResult ListingFilters()
-        {
-            return View();
-        }
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult ListingFilters(ListingAction model)
+        public JsonResult ListingFilters(ListingFiltersRequestModel model)
         {
-            var test = string.Empty;
-            return View();
-        }
+            var client = new Client();
+            var listings = client.RunAsync(new ListingAction(new ListingFilters(model.Type, model.PlaceName))).Result;
+            var flats = listings.Response.Listings.Select(x => new Flat
+            {
+                Price = x.Price.ToString(),
+                FlatLocation = x.Title.ToString(),
+                BedNum = x.BedNum.ToString(),
+                BathNum = x.BathNum.ToString(),
+                Summary = x.Summary.ToString()
+            });
+            using (var context = new FlatDbContext())
+            {
+                context.Flats.AddRange(flats);
 
+                context.SaveChanges();
+            }
+            
+            return Json(model);
+        }
     }
-}
+}   

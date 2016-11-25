@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
 using Domain;
+using NestoriaClient;
+using PropertyCross.Models;
 
 namespace PropertyCross.Controllers
 {
@@ -14,7 +16,7 @@ namespace PropertyCross.Controllers
         public ActionResult Index()
         {
            
-            return View();
+            return View(new ListingFiltersViewModel(ListingTypes.Buy));
         }
     }
 }

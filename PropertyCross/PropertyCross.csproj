@@ -186,6 +186,8 @@
     </Compile>
     <Compile Include="Models\Flat.cs" />
     <Compile Include="Models\FlatContext.cs" />
+    <Compile Include="Models\ListingFiltersRequestModel.cs" />
+    <Compile Include="Models\ListingFiltersViewModel.cs" />
     <Compile Include="Models\Repository\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -215,10 +217,6 @@
     <ProjectReference Include="..\NestoriaClient\NestoriaClient.csproj">
       <Project>{07413d03-e7c2-4e39-832b-55efef687b8e}</Project>
       <Name>NestoriaClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PropertyCrossConsole\PropertyCrossConsoleClient.csproj">
-      <Project>{d297ee77-2075-4624-91a5-1f64ca67e153}</Project>
-      <Name>PropertyCrossConsoleClient</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
