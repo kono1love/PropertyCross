@@ -70,7 +70,7 @@ public class SearchListings
             try
             {
 
-                var listingAction = new ListingAction(new ListingFilters(ListingTypes.Buy, "London"));
+                var listingAction = new ListingAction(new ListingFilters(ListingTypes.Buy, "Chelsea"));
 
                 var result = RunAsync(listingAction).Result;
 
@@ -120,10 +120,10 @@ public class SearchListings
             return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
         }
 
-        private static void ShowData(Flat flat)
-        {
+        //private static void ShowData(Flat flat)
+        //{
             
-        }
+        //}
 
         private static async Task<Flat> GetAsync(string url)
         {

@@ -9,10 +9,7 @@ using Newtonsoft.Json;
 
 namespace NestoriaClient
 {
-    public class Client
-    {
-        readonly HttpClient httpClient = new HttpClient();
-        readonly string baseUrl = @"http://api.nestoria.co.uk/api?";
+   
 
         public class Attribution
         {
@@ -64,30 +61,34 @@ namespace NestoriaClient
             [JsonProperty("response")]
             public Response Response { get; set; }
         }
+    public class Client
+    {
+        readonly HttpClient httpClient = new HttpClient();
+        readonly string baseUrl = @"http://api.nestoria.co.uk/api?";
 
         public async Task<SearchListings> GetFlatAsync(ListingAction action)
         {
-            var response = await httpClient.GetAsync(new Uri($"{baseUrl}{action.ListingUrl}"));
-            return await response.Content.ReadAsAsync<SearchListings>();
+            var response =  httpClient.GetAsync(new Uri($"{baseUrl}{action.ListingUrl}")).Result;
+            return  await response.Content.ReadAsAsync<SearchListings>();
         }
-
+        
         public async Task<SearchListings> RunAsync(ListingAction action)
-        {
+        {   
             httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd(
                 "Mozilla/5.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
 
             return await GetFlatAsync(action);
         }
-        private static Dictionary<string, object> ParseResponse(string response)
-        {
-            return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
-        }
-
-        //private static async Task<Flat> GetAsync(string url)
+        //private static Dictionary<string, object> ParseResponse(string response)
         //{
-        //    var flat = new Flat();
-
-        //    return flat;
+        //    return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
         //}
+
+        private static async Task<Flat> GetAsync(string url)
+        {
+            var flat = new Flat();
+
+            return flat;
+        }
     }
 }

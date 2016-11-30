@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using DataAccess;
 using Domain;
@@ -14,14 +13,14 @@ namespace PropertyCross.Controllers
         public JsonResult ListingFilters(ListingFiltersRequestModel model)
         {
             var client = new Client();
-            var listings = client.RunAsync(new ListingAction(new ListingFilters(model.Type, model.PlaceName))).Result;
+            var listings =  client.RunAsync(new ListingAction(new ListingFilters(model.Type, model.PlaceName))).Result;
             var flats = listings.Response.Listings.Select(x => new Flat
             {
                 Price = x.Price.ToString(),
-                FlatLocation = x.Title.ToString(),
+                FlatLocation = x.Title,
                 BedNum = x.BedNum.ToString(),
                 BathNum = x.BathNum.ToString(),
-                Summary = x.Summary.ToString()
+                Summary = x.Summary
             });
             using (var context = new FlatDbContext())
             {
