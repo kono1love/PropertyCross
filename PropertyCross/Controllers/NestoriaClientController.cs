@@ -10,7 +10,7 @@ namespace PropertyCross.Controllers
     public class NestoriaClientController : Controller
     {
         [HttpPost]
-        public JsonResult ListingFilters(ListingFiltersRequestModel model)
+        public RedirectToRouteResult ListingFilters(ListingFiltersRequestModel model)
         {
             var client = new Client();
             var listings =  client.RunAsync(new ListingAction(new ListingFilters(model.Type, model.PlaceName))).Result;
@@ -28,8 +28,8 @@ namespace PropertyCross.Controllers
 
                 context.SaveChanges();
             }
-            
-            return Json(model);
+
+            return RedirectToAction("FlatList", "Product", new {model.Type, model.PlaceName});
         }
-    }
+    }   
 }   
