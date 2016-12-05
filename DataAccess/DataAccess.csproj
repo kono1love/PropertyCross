@@ -66,6 +66,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlatDbContext.cs" />
+    <Compile Include="Migrations\201611110848346_InitialCreate.cs" />
+    <Compile Include="Migrations\201611110848346_InitialCreate.Designer.cs">
+      <DependentUpon>201611110848346_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612050858157_NewParameters.cs" />
+    <Compile Include="Migrations\201612050858157_NewParameters.Designer.cs">
+      <DependentUpon>201612050858157_NewParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612051137591_AddMore.cs" />
+    <Compile Include="Migrations\201612051137591_AddMore.Designer.cs">
+      <DependentUpon>201612051137591_AddMore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\FlatRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +91,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611110848346_InitialCreate.resx">
+      <DependentUpon>201611110848346_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612050858157_NewParameters.resx">
+      <DependentUpon>201612050858157_NewParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612051137591_AddMore.resx">
+      <DependentUpon>201612051137591_AddMore.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,15 +10,9 @@ namespace PropertyCross.Controllers
 {
     public class ProductController : Controller
     {
-        private FlatRepository repository;
-
-        public ProductController(FlatRepository productRepository)
+        public ViewResult FlatList(List<Flat> flat)
         {
-            this.repository = productRepository;
-        }
-        public PartialViewResult FlatList(Flat flat)
-        {
-            return PartialView(flat);
+            return View("List", flat);
         }
     }
 }

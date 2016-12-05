@@ -1,0 +1,18 @@
+﻿@using Domain
+
+@model IEnumerable<Flat>
+
+@{
+    ViewBag.Title = "List";
+}
+@foreach (var p in Model)
+{
+    @Html.Partial("FlatList", p)
+}
+@section Scripts {
+    <script type="text/javascript">
+        $(function() {
+            alert('');
+        });
+    </script>
+}

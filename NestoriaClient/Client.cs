@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 
 namespace NestoriaClient
 {
-   
 
-        public class Attribution
-        {
-            //public int ImgHeight { get; set; }
-            [JsonProperty("img_url")]
-            public string ImgUrl { get; set; }
-            //public int ImgWidth { get; set; }
-            //public string LinkToImg { get; set; }
-        }
 
-        public class Listing
+    public class Attribution
+    {
+        //public int ImgHeight { get; set; }
+        [JsonProperty("img_url", NullValueHandling = NullValueHandling.Ignore)]
+        public string ImgUrl { get; set; }
+        //public int ImgWidth { get; set; }
+        //public string LinkToImg { get; set; }
+    }
+
+    public class Listing
         {
             [JsonProperty("bathroom_number", NullValueHandling = NullValueHandling.Ignore)]
             public int BathNum { get; set; }
@@ -40,13 +40,21 @@ namespace NestoriaClient
             //public int thumb_width { get; set; }
             [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
             public string Title { get; set; }
-        }
+        [JsonProperty("longitude", NullValueHandling = NullValueHandling.Ignore)]
+        public string Longitude { get; set; }
+        [JsonProperty("latitude", NullValueHandling = NullValueHandling.Ignore)]
+        public string Latitude { get; set; }
+    }
 
         public class Location
         {
             [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
             public string Title { get; set; }
-        }
+        [JsonProperty("longitude", NullValueHandling = NullValueHandling.Ignore)]
+        public string Longitude { get; set; }
+        [JsonProperty("latitude", NullValueHandling = NullValueHandling.Ignore)]
+        public string Latitude { get; set; }
+    }
         public class Response
         {
             [JsonProperty("listings", NullValueHandling = NullValueHandling.Ignore)]
@@ -79,10 +87,10 @@ namespace NestoriaClient
 
             return await GetFlatAsync(action);
         }
-        //private static Dictionary<string, object> ParseResponse(string response)
-        //{
-        //    return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
-        //}
+        private static Dictionary<string, object> ParseResponse(string response)
+        {
+            return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
+        }
 
         private static async Task<Flat> GetAsync(string url)
         {

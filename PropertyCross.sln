@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyCross", "PropertyCross\PropertyCross.csproj", "{FD54BC9E-B0E8-4A07-A78B-9737DE6E7C66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyCrossConsoleClient", "PropertyCrossConsole\PropertyCrossConsoleClient.csproj", "{D297EE77-2075-4624-91A5-1F64CA67E153}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{B92B17A8-C9AD-45D0-A478-577D78145C93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{35DCF7BE-FE91-4E4B-875C-8EFDC7DDFD21}"
@@ -23,10 +21,6 @@ Global
 		{FD54BC9E-B0E8-4A07-A78B-9737DE6E7C66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD54BC9E-B0E8-4A07-A78B-9737DE6E7C66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD54BC9E-B0E8-4A07-A78B-9737DE6E7C66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D297EE77-2075-4624-91A5-1F64CA67E153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D297EE77-2075-4624-91A5-1F64CA67E153}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D297EE77-2075-4624-91A5-1F64CA67E153}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D297EE77-2075-4624-91A5-1F64CA67E153}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B92B17A8-C9AD-45D0-A478-577D78145C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B92B17A8-C9AD-45D0-A478-577D78145C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92B17A8-C9AD-45D0-A478-577D78145C93}.Release|Any CPU.ActiveCfg = Release|Any CPU

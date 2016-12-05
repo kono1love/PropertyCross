@@ -1,5 +1,6 @@
 ﻿@model  PropertyCross.Models.ListingFiltersViewModel
 @using System.Web.Mvc.Html
+@using System.Xml
 
 @{
     Layout = null;
@@ -44,11 +45,12 @@
         <button class="btn">My location</button>
             </p>
             <p><label>Recent searches:</label>
+        @RenderSection("Scripts", required: false)
             </p>
-        @*@Html.Action("FlatList","Product")*@
                 }
     </div>
-    <div></div>
+    <div>
+    </div>
 </div>
 </body>
 </html> 
