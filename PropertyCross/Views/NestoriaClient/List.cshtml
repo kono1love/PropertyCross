@@ -7,12 +7,6 @@
 }
 @foreach (var p in Model)
 {
-    @Html.Partial("FlatList", p)
+    @Html.Partial("~/Views/NestoriaClient/FlatList.cshtml", p)
 }
-@section Scripts {
-    <script type="text/javascript">
-        $(function() {
-            alert('');
-        });
-    </script>
 }

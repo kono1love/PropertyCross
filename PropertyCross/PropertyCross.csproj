@@ -157,15 +157,18 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\File System.pubxml" />
-    <None Include="scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="scripts\jquery-1.10.2.js" />
-    <Content Include="scripts\jquery-1.10.2.min.js" />
-    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <None Include="scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="scripts\jquery-3.1.1.js" />
+    <Content Include="scripts\jquery-3.1.1.min.js" />
+    <Content Include="scripts\jquery-3.1.1.slim.js" />
+    <Content Include="scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -195,6 +198,8 @@
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\NestoriaClient\FlatList.cshtml" />
     <Content Include="Views\NestoriaClient\List.cshtml" />
+    <Content Include="scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="scripts\jquery-3.1.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

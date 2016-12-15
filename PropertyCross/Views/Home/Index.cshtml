@@ -1,56 +1,71 @@
 ﻿@model  PropertyCross.Models.ListingFiltersViewModel
 @using System.Web.Mvc.Html
-@using System.Xml
+
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Property Cross</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-</head>
-<body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            @Html.ActionLink("Property Cross", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
-            
-        </div>
-        <div class="navbar-collapse collapse">
-            <form class="navbar-form pull-right">
-                <button type="button" class="btn">Favourites</button>
-            </form>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Property Cross", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <form class="navbar-form pull-right">
+                    <button type="button" class="btn">Favourites</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-   
-<div class="container body-content">
-    <div class="span4" align="center">
-        @using (Html.BeginForm("ListingFilters", "NestoriaClient", FormMethod.Post))
-        {
-            @Html.HiddenFor(p => p.Type)
-            <p>Use bla bla bla
-                bla bla bla
-                bla bla bla</p>
-            <p> @Html.TextBoxFor(x => x.PlaceName)
-            </p>
-            <p><input class="btn" value="Go" type="submit">
-        <button class="btn">My location</button>
-            </p>
-            <p><label>Recent searches:</label>
-        @RenderSection("Scripts", required: false)
-            </p>
+
+            @using (Html.BeginForm("ListingFilters", "Home", FormMethod.Post))
+            {
+                @Html.HiddenFor(p => p.Type)
+                <p>
+                    Use bla bla bla
+                    bla bla bla
+                    bla bla bla
+                </p>
+                <p>
+                    @Html.TextBoxFor(x => x.PlaceName)
+                </p>
+                <p>
+                    <input class="btn" id="btnGo"value="Go" type="submit">
+                    @*<button class="btn">My location</button>*@
+             
+                    <label>Recent searches:</label>
+                    <div id="result1"> </div>
+                </p>
+                @section Scripts{
+                    <script src="@Url.Content("~/scripts/jquery-3.1.1.js")"></script>
+                    <script type="text/javascript">
+                        $(function() {
+                            $('#btnGo')
+                                .click(function() {
+                                    var listingFiltersViewModel = {
+                                        type: $('#id-type').val(),
+                                        placeName: $('#id-placeName').val()
+
+                                    }
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        data: (listingFiltersViewModel),
+                                        url: 'Views/Home/Index',
+                                        dataType: 'JSON',
+                                        contentType: 'application/json',
+                                        success: function(data) {
+                                            $('#result1').html(data);
+                                        }
+
+                                });
+                                });
+                        })
+                    </script>
+
                 }
-    </div>
-    <div>
-    </div>
-</div>
-</body>
-</html> 
+
+}
+

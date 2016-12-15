@@ -87,10 +87,10 @@ namespace NestoriaClient
 
             return await GetFlatAsync(action);
         }
-        private static Dictionary<string, object> ParseResponse(string response)
-        {
-            return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
-        }
+        //private static Dictionary<string, object> ParseResponse(string response)
+        //{
+        //    return JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
+        //}
 
         private static async Task<Flat> GetAsync(string url)
         {

@@ -4,7 +4,7 @@
     <h3>
         <img src="@Model.ImgUrl" alt="CakePHP" />
         <strong>@Model.FlatLocation</strong>
-        <span class="pull-left label label-primary">@string.Format("{0:C}", Convert.ToDecimal(Model.Price))</span>
+        <span class="pull-left label label-primary">@($"{Convert.ToDecimal(Model.Price):C}")</span>
     </h3>
     <span class="lead">@Model.Summary</span>
 </div>
